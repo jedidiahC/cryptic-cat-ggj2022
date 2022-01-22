@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySegment : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _deathParticles = null;
-    [SerializeField] private GameObject _trail = null;
+    [SerializeField] private TrailRenderer _trail = null;
     [SerializeField] private Letter _letter = null;
 
     private void Awake()
@@ -15,10 +15,20 @@ public class EnemySegment : MonoBehaviour
         Debug.Assert(_trail != null, "_trail is not assigned!");
     }
 
+    public void SetColor(Color color)
+    {
+        _letter.SetColor(color);
+    }
+
+    public void SetTrailColor(Color color)
+    {
+        _trail.startColor = color;
+    }
+
     public void OnDeath()
     {
         _deathParticles.gameObject.SetActive(true);
         _letter.SetVisible(false);
-        _trail.SetActive(false);
+        _trail.gameObject.SetActive(false);
     }
 }

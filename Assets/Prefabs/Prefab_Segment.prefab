@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deathParticles: {fileID: 4178905271716409572}
-  _trail: {fileID: 2808049527851307047}
+  _trail: {fileID: 8543874987773317397}
   _letter: {fileID: 2772702961217972085}
 --- !u!135 &6566936839975605973
 SphereCollider:

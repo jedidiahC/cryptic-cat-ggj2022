@@ -17,6 +17,11 @@ public class Letter : MonoBehaviour
         _letterText.text = text;
     }
 
+    public void SetColor(Color color)
+    {
+        _letterText.color = color;
+    }
+
     public void SetVisible(bool isVisible)
     {
         _letterText.enabled = isVisible;

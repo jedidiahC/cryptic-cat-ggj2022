@@ -56,7 +56,7 @@ public class RuneCaster : MonoBehaviour
         _isCasting = Keyboard.current[_castKey].isPressed;
         _selectedRuneStructure = _runeStructures[0];
 
-        if (_isCasting && !_hasCast)
+        if (_isCasting && !_hasCast && IsOnFloor())
         {
             Casting();
             _characterMovement.SetDisabled(true);
@@ -79,12 +79,17 @@ public class RuneCaster : MonoBehaviour
         OnCast(_selectedRuneStructure);
         AddEnergy(-_energyDrainRate * Time.deltaTime);
 
-        if (_currEnergy > 0)
+        if (_currEnergy > 0.1f)
         {
             if (AreAllKeysHeld(_selectedRuneStructure))
             {
                 SuccessfulCast();
             }
+        }
+        else
+        {
+            _hasCast = true;
+            OnStopCasting(_selectedRuneStructure);
         }
     }
 
@@ -144,19 +149,23 @@ public class RuneCaster : MonoBehaviour
 
     private void TryFloorCast()
     {
+        if (IsOnFloor())
+        {
+            Instantiate(_floorRune, transform.position + _runePlantOffset, Quaternion.identity);
+        }
+    }
+
+    private bool IsOnFloor()
+    {
         LayerMask layerMask = 1 << LayerMask.NameToLayer("RuneFloor");
         Ray ray = new Ray(_floorCheck.transform.position, _floorCheck.transform.forward);
         Debug.DrawRay(ray.origin, ray.direction, Color.red);
 
         RaycastHit hit;
 
-        Debug.Log("Try floor cast");
-
-        if (Physics.Raycast(ray, out hit, _floorCastDistance, layerMask))
-        {
-            Debug.DrawRay(ray.origin, ray.direction, Color.green);
-            Instantiate(_floorRune, transform.position + _runePlantOffset, Quaternion.identity);
-        }
+        // Debug.Log("Try floor cast");
+        Debug.DrawRay(ray.origin, ray.direction, Color.green);
+        return Physics.Raycast(ray, out hit, _floorCastDistance, layerMask);
     }
 
     public void AddEnergy(float energyDelta)

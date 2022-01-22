@@ -48,6 +48,8 @@ MonoBehaviour:
   _word: fuck you
   _segmentPrefab: {fileID: 1094414345992086917, guid: 33af4aeafeb799d449b8128d4ed51090, type: 3}
   _enemyMovement: {fileID: 409952035834076160}
+  _color: {r: 0.7830189, g: 0.32133323, b: 0.32133323, a: 1}
+  _trailColor: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 0.44705883}
   _deathDelay: 0.1
   _segDeathDelay: 0.1
   _initOnStart: 0
@@ -66,7 +68,7 @@ MonoBehaviour:
   _enemyPath: {fileID: 0}
   _segments: []
   _headSeg: {fileID: 0}
-  _separation: 0.1
+  _separation: 0.01
   _smoothSpeed: 0.1
   _topSpeed: 5
   _accel: 0.5

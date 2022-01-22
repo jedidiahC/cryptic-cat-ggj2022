@@ -8,4 +8,5 @@ public struct RuneStructure
 {
     public Color color;
     public Key[] keyCombinations;
+    public RuneWords runeWords;
 }

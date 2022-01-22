@@ -34,7 +34,8 @@ public class EnemySpawner : MonoBehaviour
             EnemyPath enemyPath = _enemyPaths[Random.Range(0, _enemyPaths.Length)];
 
             Enemy newEnemy = Instantiate<Enemy>(_enemyPrefab, spawnPt, Quaternion.identity);
-            newEnemy.Init("FUCK MY LIFEEEEEEEEEEEEEEEEEEEEE", RuneWords.Belief, enemyPath);
+            string[] strings = { "LET IT GOOOOOOOOOO", "WHY DO I DO THIS???", "FEAR IS THE MINDKILLER", "GONNA MAKE YOU AN OFFER YOU CANT REFUSE", "FINISH THE DAMN GAME JED!!!!" };
+            newEnemy.Init(strings[Random.Range(0, strings.Length)], RuneWords.Belief, enemyPath);
 
             _timer = _spawnInterval;
         }

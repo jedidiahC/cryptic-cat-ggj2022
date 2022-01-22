@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class Rune : MonoBehaviour
 {
-    [SerializeField] private RuneWords _word;
+    [SerializeField] private RuneWords _words;
+
+    public void SetRuneWords(RuneWords words)
+    {
+        _words = words;
+    }
 
     public void Execute()
     {
@@ -15,7 +20,7 @@ public class Rune : MonoBehaviour
     {
         Debug.Log("On trigger enter");
         Enemy enemy = other.transform.parent.GetComponent<Enemy>();
-        enemy.Damage(5, _word);
+        enemy.Damage(5, _words);
         gameObject.SetActive(false);
     }
 }

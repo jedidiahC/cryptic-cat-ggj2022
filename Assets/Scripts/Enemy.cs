@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private string _word = "death";
     [SerializeField] private GameObject _segmentPrefab = null;
     [SerializeField] private EnemyMovement _enemyMovement = null;
+    [SerializeField] private Color _color = Color.white;
+    [SerializeField] private Color _trailColor = Color.white;
     [SerializeField] private float _deathDelay = 0.05f;
     [SerializeField] private float _segDeathDelay = 0.2f;
     [SerializeField] private bool _initOnStart = false;
@@ -59,6 +61,8 @@ public class Enemy : MonoBehaviour
             letter.SetText(_word[_word.Length - c - 1].ToString());
             segTransforms[c] = newSegGO.transform;
             _segments[c] = newSegGO.GetComponent<EnemySegment>();
+            _segments[c].SetColor(_color);
+            _segments[c].SetTrailColor(_trailColor);
             newSegGO.transform.SetParent(this.transform);
         }
 

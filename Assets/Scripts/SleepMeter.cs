@@ -7,6 +7,7 @@ public class SleepMeter : MonoBehaviour
 {
     [SerializeField] private Image _sleepMeter = null;
     [SerializeField] private Target _target = null;
+    [SerializeField] private float _smoothAmt = 0.3f;
 
     private void Awake()
     {
@@ -17,6 +18,6 @@ public class SleepMeter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _sleepMeter.fillAmount = _target.GetSleepLvlNormalized();
+        _sleepMeter.fillAmount = Mathf.Lerp(_sleepMeter.fillAmount, _target.GetSleepLvlNormalized(), _smoothAmt);
     }
 }
