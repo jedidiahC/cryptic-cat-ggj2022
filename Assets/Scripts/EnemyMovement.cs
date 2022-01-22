@@ -17,6 +17,7 @@ public class EnemyMovement : MonoBehaviour
 
     private Vector3 _currVel;
     private int _currentWayPointIndex = 0;
+    private bool _isUpdating = true;
 
     public void SetWaypoints(Transform[] wayPoints)
     {
@@ -29,15 +30,27 @@ public class EnemyMovement : MonoBehaviour
         _headSeg = segments[0].GetComponent<Rigidbody>();
     }
 
+    public void SetIsUpdating(bool isUpdating)
+    {
+        _isUpdating = isUpdating;
+    }
+
     private void Update()
     {
+        if (!_isUpdating)
+        {
+            _currVel = Vector3.zero;
+            return;
+        }
+
         FollowWayPoints();
         UpdateSegments();
     }
 
     private void FollowWayPoints()
     {
-        if (_currentWayPointIndex >= _wayPoints.Length || _segments.Length <= 0) {
+        if (_currentWayPointIndex >= _wayPoints.Length || _segments.Length <= 0)
+        {
             _currVel = Vector3.zero;
             return;
         }
@@ -51,7 +64,8 @@ public class EnemyMovement : MonoBehaviour
         _currVel += targetDir * _accel;
         _currVel = Vector3.ClampMagnitude(_currVel, _topSpeed);
 
-        if (Vector3.Distance(headSegPos, destinationPos) <= _reachThreshold) {
+        if (Vector3.Distance(headSegPos, destinationPos) <= _reachThreshold)
+        {
             _currentWayPointIndex++;
         }
     }

@@ -7,7 +7,8 @@ public class Letter : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _letterText = null;
 
-    private void Awake() {
+    private void Awake()
+    {
         Debug.Assert(_letterText != null, "_letterText is not assigned!");
     }
 
@@ -15,4 +16,10 @@ public class Letter : MonoBehaviour
     {
         _letterText.text = text;
     }
+
+    public void SetVisible(bool isVisible)
+    {
+        _letterText.enabled = isVisible;
+    }
+
 }
