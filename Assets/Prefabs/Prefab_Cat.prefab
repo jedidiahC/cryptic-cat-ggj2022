@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4897495547020042509}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.49259, y: 0.49259, z: 0.49259}
+  m_LocalPosition: {x: 0, y: 0.117, z: 0}
+  m_LocalScale: {x: 0.91819364, y: 0.91819364, z: 0.91819364}
   m_Children: []
   m_Father: {fileID: 4897495548150087587}
   m_RootOrder: 0
@@ -89,7 +89,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4897495547020042509}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a4fd31ab4437400489ef7ef181d32345, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -122,7 +122,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4897495547074565742}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.151, y: 0, z: 0}
+  m_LocalPosition: {x: 0.55, y: 0.21, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4897495548150087587}
@@ -154,6 +154,12 @@ MonoBehaviour:
   _characterMovement: {fileID: 4897495548150087588}
   _castKey: 19
   _runeStructures:
+  - color: {r: 0.6037736, g: 0.15663938, b: 0.15663938, a: 0}
+    keyCombinations: 230000001d0000001e0000001c000000
+    runeWords: 1
+  - color: {r: 0.6037736, g: 0.15663938, b: 0.15663938, a: 0}
+    keyCombinations: 27000000230000001900000010000000
+    runeWords: 1
   - color: {r: 0.6037736, g: 0.15663938, b: 0.15663938, a: 0}
     keyCombinations: 16000000170000001d0000001b000000
     runeWords: 1
@@ -532,8 +538,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4897495547554778537}
   m_LocalRotation: {x: -0, y: -0, z: 0.0015612529, w: 0.99999887}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.49259, y: 0.49259, z: 0.49259}
+  m_LocalPosition: {x: 0, y: 0.116999984, z: 0}
+  m_LocalScale: {x: 0.91819364, y: 0.91819364, z: 0.91819364}
   m_Children: []
   m_Father: {fileID: 4897495548150087587}
   m_RootOrder: 1
@@ -578,7 +584,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fa0637770e4a8d542beb7155a4f5284f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 848a23583226b504197c91cc6e7546b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -639,8 +645,8 @@ MonoBehaviour:
   - {fileID: 4897495548350126087}
   - {fileID: 4897495547075158760}
   - {fileID: 4897495548175839017}
-  _unselected: {r: 0.21568628, g: 0.11764706, b: 0.43529412, a: 1}
-  _selected: {r: 0.7326847, g: 0.8584906, b: 0.58717513, a: 1}
+  _unselected: {r: 0.7234517, g: 0.6994037, b: 0.8773585, a: 0.70980394}
+  _selected: {r: 0.7326847, g: 0.8584906, b: 0.58717513, a: 0.72156864}
   _runeCaster: {fileID: 4897495547074565728}
 --- !u!1 &4897495548150087586
 GameObject:
@@ -701,7 +707,7 @@ MonoBehaviour:
   _jumpVelocity: 7
   _fallMultiplier: 5
   _lowJumpMultiplier: 2
-  _accel: 0.5
+  _accel: 1
 --- !u!95 &4897495548150087589
 Animator:
   serializedVersion: 3
@@ -712,7 +718,7 @@ Animator:
   m_GameObject: {fileID: 4897495548150087586}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0f225477e184cbf41ad93a4c146d183c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -735,7 +741,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 112
+  m_Constraints: 120
   m_CollisionDetection: 1
 --- !u!114 &4897495548150087591
 MonoBehaviour:
@@ -1193,7 +1199,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4897495548504149379}
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: -0.106, y: -0.137, z: 0}
+  m_LocalPosition: {x: 0.104, y: -0.258, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4897495548150087587}

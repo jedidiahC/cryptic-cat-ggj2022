@@ -18,8 +18,10 @@ public class Enemy : MonoBehaviour
     private int _currSegDestroyed = -1;
     private EnemySegment[] _segments;
     private float _timer = 0;
+    private float _health = 0;
 
     public RuneWords CounterType { get { return _counterType; } }
+    public bool IsDead { get { return _isDead; } }
 
     private void Awake()
     {
@@ -44,6 +46,7 @@ public class Enemy : MonoBehaviour
     {
         _word = word;
         _counterType = counterType;
+        _health = _word.Length;
 
         _enemyMovement.SetPath(enemyPath);
         SpawnSegments();
@@ -75,7 +78,11 @@ public class Enemy : MonoBehaviour
 
         if (_counterType == counterType)
         {
-            OnDeath();
+            _health -= amount;
+            if (_health <= 0)
+            {
+                OnDeath();
+            }
         }
     }
 

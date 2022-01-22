@@ -7,9 +7,11 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Enemy _enemyPrefab = null;
     [SerializeField] private EnemyPath[] _enemyPaths = null;
     [SerializeField] private Transform[] _spawnPoints = null;
+    [SerializeField] private Enemy[] _tutorialEnemies = null;
 
     [SerializeField] private float _spawnInterval = 5.0f;
     private float _timer = 0;
+    private bool _tutorialEnded = false;
 
     private void Awake()
     {
@@ -26,6 +28,15 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!_tutorialEnded)
+        {
+            foreach (var enemy in _tutorialEnemies)
+            {
+                if (!enemy.IsDead) { return; }
+            }
+            _tutorialEnded = true;
+        }
+
         _timer -= Time.deltaTime;
 
         if (_timer <= 0)
@@ -34,7 +45,9 @@ public class EnemySpawner : MonoBehaviour
             EnemyPath enemyPath = _enemyPaths[Random.Range(0, _enemyPaths.Length)];
 
             Enemy newEnemy = Instantiate<Enemy>(_enemyPrefab, spawnPt, Quaternion.identity);
-            string[] strings = { "LET IT GOOOOOOOOOO", "WHY DO I DO THIS???", "FEAR IS THE MINDKILLER", "GONNA MAKE YOU AN OFFER YOU CANT REFUSE", "FINISH THE DAMN GAME JED!!!!" };
+            string[] strings = { "SELF-DOUBT", "FEAR", "I CAN'T DO THIS", "RUMINATION", 
+                "I'M GONNA LOSE MY JOB", "NOTHING EVER WORKS OUT" , 
+                ""};
             newEnemy.Init(strings[Random.Range(0, strings.Length)], RuneWords.Belief, enemyPath);
 
             _timer = _spawnInterval;

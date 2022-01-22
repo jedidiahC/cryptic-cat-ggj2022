@@ -14,6 +14,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float _accel = 0.5f;
     [SerializeField] private float _decel = 0.5f;
     [SerializeField] private float _reachThreshold = 0.2f;
+    [SerializeField] private bool _loopWaypoints = false;
 
     private Vector3 _currVel;
     private int _currentWayPointIndex = 0;
@@ -28,6 +29,7 @@ public class EnemyMovement : MonoBehaviour
     public void SetSegments(Transform[] segments)
     {
         _segments = segments;
+        if (_segments.Length <= 1) { return; }
         _headSeg = segments[0].GetComponent<Rigidbody>();
     }
 
@@ -61,6 +63,11 @@ public class EnemyMovement : MonoBehaviour
         if (_currentWayPointIndex >= _wayPoints.Length || _segments.Length <= 0)
         {
             _currVel = Vector3.zero;
+
+            if (_loopWaypoints)
+            {
+                _currentWayPointIndex = 0;
+            }
             return;
         }
 

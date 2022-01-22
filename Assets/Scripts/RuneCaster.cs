@@ -54,7 +54,12 @@ public class RuneCaster : MonoBehaviour
         // Rune Surface Cast
         _nearbyRuneSurface = CheckCast();
         _isCasting = Keyboard.current[_castKey].isPressed;
-        _selectedRuneStructure = _runeStructures[0];
+
+
+        if (Keyboard.current[_castKey].wasPressedThisFrame)
+        {
+            _selectedRuneStructure = _runeStructures[Random.Range(0, _runeStructures.Count)];
+        }
 
         if (_isCasting && !_hasCast && IsOnFloor())
         {
@@ -151,7 +156,12 @@ public class RuneCaster : MonoBehaviour
     {
         if (IsOnFloor())
         {
-            Instantiate(_floorRune, transform.position + _runePlantOffset, Quaternion.identity);
+            GameObject rune = Instantiate(_floorRune, _floorRune.transform.position, Quaternion.identity);
+            Vector3 runePos = rune.transform.position;
+            runePos.x = this.transform.position.x;
+            runePos.y = this.transform.position.y + _floorRune.transform.position.y;
+            rune.transform.position = runePos;
+            rune.GetComponent<Rune>().SetRuneWords(_selectedRuneStructure.runeWords);
         }
     }
 

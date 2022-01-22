@@ -35,6 +35,7 @@ public class RuneCastUI : MonoBehaviour
         for (int i = 0; i < _letters.Length; i++)
         {
             _letters[i].text = runeStruct.keyCombinations[i].ToString();
+            // _letters[i].color = _unselected;
         }
 
         _isCasting = true;
