@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private EnemyMovement _enemyMovement = null;
     [SerializeField] private float _deathDelay = 0.05f;
     [SerializeField] private float _segDeathDelay = 0.2f;
+    [SerializeField] private bool _initOnStart = false;
 
     private bool _isDead = false;
     private int _currSegDestroyed = -1;
@@ -26,11 +27,23 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        Init();
+        if (_initOnStart)
+        {
+            Init();
+        }
     }
 
     private void Init()
     {
+        SpawnSegments();
+    }
+
+    public void Init(string word, RuneWords counterType, EnemyPath enemyPath)
+    {
+        _word = word;
+        _counterType = counterType;
+
+        _enemyMovement.SetPath(enemyPath);
         SpawnSegments();
     }
 
@@ -77,13 +90,14 @@ public class Enemy : MonoBehaviour
 
     private void DeathSequence()
     {
-        if (_currSegDestroyed < 0 || _currSegDestroyed >= _segments.Length) {
+        if (_currSegDestroyed < 0 || _currSegDestroyed >= _segments.Length)
+        {
             return;
         }
 
         _timer -= Time.deltaTime;
 
-        if (_timer <= 0) 
+        if (_timer <= 0)
         {
             _segments[_currSegDestroyed].OnDeath();
             _currSegDestroyed++;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] private Transform[] _wayPoints = null;
+    [SerializeField] private EnemyPath _enemyPath = null;
     [SerializeField] private Transform[] _segments = null;
     [SerializeField] private Rigidbody _headSeg = null;
 
@@ -18,10 +18,11 @@ public class EnemyMovement : MonoBehaviour
     private Vector3 _currVel;
     private int _currentWayPointIndex = 0;
     private bool _isUpdating = true;
+    private Transform[] _wayPoints = null;
 
-    public void SetWaypoints(Transform[] wayPoints)
+    public void SetPath(EnemyPath enemyPath)
     {
-        _wayPoints = wayPoints;
+        _wayPoints = enemyPath.WayPoints;
     }
 
     public void SetSegments(Transform[] segments)
@@ -33,6 +34,14 @@ public class EnemyMovement : MonoBehaviour
     public void SetIsUpdating(bool isUpdating)
     {
         _isUpdating = isUpdating;
+    }
+
+    private void Start()
+    {
+        if (_enemyPath != null)
+        {
+            _wayPoints = _enemyPath.WayPoints;
+        }
     }
 
     private void Update()

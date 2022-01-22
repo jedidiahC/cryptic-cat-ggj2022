@@ -16,5 +16,6 @@ public class Rune : MonoBehaviour
         Debug.Log("On trigger enter");
         Enemy enemy = other.transform.parent.GetComponent<Enemy>();
         enemy.Damage(5, _word);
+        gameObject.SetActive(false);
     }
 }
