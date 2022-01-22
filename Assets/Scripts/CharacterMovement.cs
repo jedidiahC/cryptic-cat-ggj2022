@@ -83,10 +83,14 @@ public class CharacterMovement : MonoBehaviour
 
     private void Move()
     {
-        // Debug.Log("Current moveVec: " + _moveVec);
-        if (Mathf.Abs(_rb.velocity.x) < _walkSpeed)
+        Debug.Log("Current vel: " + _rb.velocity);
+        _rb.velocity += _moveVec * _accel;
+
+        if (Mathf.Abs(_rb.velocity.x) > _walkSpeed)
         {
-            _rb.velocity += _moveVec * _accel;
+            Vector3 vel = _rb.velocity;
+            vel.x = vel.x > 1 ? _walkSpeed : -_walkSpeed;
+            _rb.velocity = vel;
         }
     }
 
