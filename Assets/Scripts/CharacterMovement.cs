@@ -20,6 +20,12 @@ public class CharacterMovement : MonoBehaviour
 
     private Vector3 _moveVec = Vector3.zero;
     private bool _isRunning = false;
+    private bool _isDisabled = false;
+
+    public void SetDisabled(bool isDisabled)
+    {
+        _isDisabled = isDisabled;
+    }
 
     private void Awake()
     {
@@ -31,6 +37,10 @@ public class CharacterMovement : MonoBehaviour
     private void Update()
     {
         // _animator.SetBool(ANIM_RUNNING_BOOL, _moveVec.sqrMagnitude > 0);
+        if (_isDisabled)
+        {
+            _moveVec = Vector2.zero;
+        }
     }
 
     public void OnMove(InputValue inInputValue)
@@ -39,6 +49,12 @@ public class CharacterMovement : MonoBehaviour
         // Debug.Log(_playerInput.currentControlScheme + " " + moveVec);
 
         _moveVec = new Vector3(moveVec.x, 0, moveVec.y);
+
+        if (_isDisabled)
+        {
+            _moveVec = Vector2.zero;
+        }
+
         FaceMoveVec();
     }
 

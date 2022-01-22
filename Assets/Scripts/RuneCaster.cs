@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class RuneCaster : MonoBehaviour
 {
+    public event System.Action<RuneStructure> OnCast = delegate { };
+    public event System.Action<RuneStructure> OnStopCasting = delegate { };
+
     [SerializeField] private float _maxEnergy = 100;
     [SerializeField] private float _currEnergy = 100;
     [SerializeField] private string _castLayerName = "RuneSurface";
@@ -15,14 +18,34 @@ public class RuneCaster : MonoBehaviour
     [SerializeField] private float _floorCastDistance = 0.1f;
 
     [SerializeField] private GameObject _floorRune = null;
+    [SerializeField] private Vector3 _runePlantOffset = Vector3.zero;
+
+    [SerializeField] private float _energyDrainRate = 0.5f;
+    [SerializeField] private float _energyRegenRate = 0.3f;
+
+    [SerializeField] private CharacterMovement _characterMovement = null;
+
+    [Header("Inputs")]
+    [SerializeField] private Key _castKey = Key.E;
+    [SerializeField] private List<RuneStructure> _runeStructures = null;
 
     private RuneSurface _nearbyRuneSurface = null;
+    private Keyboard _keyboard;
+    private bool _isCasting = false;
+    private bool _hasCast = false;
+    private RuneStructure _selectedRuneStructure;
+
+    public float CurrEnergy { get { return _currEnergy; } }
+    public float CurrEnergyNormalized { get { return _currEnergy / _maxEnergy; } }
+    public bool IsCasting { get { return _isCasting; } }
 
     private void Awake()
     {
         Debug.Assert(_castCheck != null, "_castCheck is not assigned!");
         Debug.Assert(_floorCheck != null, "_floorCheck is not assigned!");
         Debug.Assert(_floorRune != null, "_floorRune is not assigned!");
+
+        _keyboard = Keyboard.current;
     }
 
     // Update is called once per frame
@@ -30,9 +53,54 @@ public class RuneCaster : MonoBehaviour
     {
         // Rune Surface Cast
         _nearbyRuneSurface = CheckCast();
+        _isCasting = Keyboard.current[_castKey].isPressed;
+        _selectedRuneStructure = _runeStructures[0];
+
+        if (_isCasting && !_hasCast)
+        {
+            Casting();
+            _characterMovement.SetDisabled(true);
+        }
+        else
+        {
+            AddEnergy(_energyRegenRate * Time.deltaTime);
+        }
+
+        if (!_isCasting)
+        {
+            _hasCast = false;
+            _characterMovement.SetDisabled(false);
+            OnStopCasting(_selectedRuneStructure);
+        }
     }
 
-    private void OnInteract(InputValue inputValue)
+    private void Casting()
+    {
+        OnCast(_selectedRuneStructure);
+        AddEnergy(-_energyDrainRate * Time.deltaTime);
+
+        if (_currEnergy > 0)
+        {
+            if (AreAllKeysHeld(_selectedRuneStructure))
+            {
+                SuccessfulCast();
+            }
+        }
+    }
+
+    private bool AreAllKeysHeld(RuneStructure runeStructure)
+    {
+        for (int i = 0; i < runeStructure.keyCombinations.Length; i++)
+        {
+            if (!_keyboard[runeStructure.keyCombinations[i]].isPressed)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void SuccessfulCast()
     {
         // Rune Surface Cast
         if (_nearbyRuneSurface != null)
@@ -45,6 +113,9 @@ public class RuneCaster : MonoBehaviour
             // Rune Floor Cast
             TryFloorCast();
         }
+
+        _hasCast = true;
+        OnStopCasting(_selectedRuneStructure);
     }
 
     private RuneSurface CheckCast()
@@ -84,7 +155,7 @@ public class RuneCaster : MonoBehaviour
         if (Physics.Raycast(ray, out hit, _floorCastDistance, layerMask))
         {
             Debug.DrawRay(ray.origin, ray.direction, Color.green);
-            Instantiate(_floorRune, transform.position, Quaternion.identity);
+            Instantiate(_floorRune, transform.position + _runePlantOffset, Quaternion.identity);
         }
     }
 

@@ -66,7 +66,7 @@ MonoBehaviour:
   _enemyPath: {fileID: 0}
   _segments: []
   _headSeg: {fileID: 0}
-  _separation: 0.2
+  _separation: 0.1
   _smoothSpeed: 0.1
   _topSpeed: 5
   _accel: 0.5

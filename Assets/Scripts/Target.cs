@@ -13,6 +13,12 @@ public class Target : MonoBehaviour
             Debug.Log("Target HIT");
             Enemy enemy = other.transform.parent.GetComponent<Enemy>();
             enemy.Damage(4, enemy.CounterType);
+            _currSleepLvl = Mathf.Clamp(_currSleepLvl - 20, 0, 100);
         }
+    }
+
+    public float GetSleepLvlNormalized()
+    {
+        return _currSleepLvl / 100f;
     }
 }
