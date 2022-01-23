@@ -102,7 +102,7 @@ public class RuneCaster : MonoBehaviour
     {
         for (int i = 0; i < runeStructure.keyCombinations.Length; i++)
         {
-            if (!_keyboard[runeStructure.keyCombinations[i]].isPressed)
+            if (!Keyboard.current[runeStructure.keyCombinations[i]].isPressed)
             {
                 return false;
             }

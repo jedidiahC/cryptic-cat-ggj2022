@@ -3454,7 +3454,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 6549063201036272909}
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: Play
+        m_MethodName: SetTrigger
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3466,7 +3466,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1953234979}
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: Play
+        m_MethodName: SetTrigger
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3910,7 +3910,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1953234979}
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: Play
+        m_MethodName: SetTrigger
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6639,7 +6639,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 9baef8e6513b9494aaa2ecca19ce31e2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
