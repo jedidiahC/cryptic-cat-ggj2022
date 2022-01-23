@@ -23,7 +23,7 @@ public class CharacterMovement : MonoBehaviour
 
     private Vector3 _moveVec = Vector3.zero;
     private bool _isRunning = false;
-    private bool _isDisabled = false;
+    [SerializeField] private bool _isDisabled = false;
 
     public void SetDisabled(bool isDisabled)
     {

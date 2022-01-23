@@ -62,11 +62,7 @@ public class Rune : MonoBehaviour
                         gameObject.SetActive(false);
                         Destroy(this.gameObject, 0.5f);
                     }
-                }
-                else
-                {
-                    _projectilesFired++;
-                    _timer = _fireInterval;
+                    return;
                 }
             }
         }
