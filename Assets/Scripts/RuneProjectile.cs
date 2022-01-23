@@ -25,7 +25,7 @@ public class RuneProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("On trigger enter");
+        // Debug.Log("On trigger enter");
         Enemy enemy = other.transform.parent.GetComponent<Enemy>();
 
         if (enemy != null && !_hit)
@@ -34,6 +34,7 @@ public class RuneProjectile : MonoBehaviour
             _hit = true;
         }
 
-        gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
+        Destroy(this.gameObject, 0.2f);
     }
 }

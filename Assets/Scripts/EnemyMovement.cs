@@ -54,7 +54,6 @@ public class EnemyMovement : MonoBehaviour
             return;
         }
 
-        FollowWayPoints();
         UpdateSegments();
     }
 
@@ -77,7 +76,7 @@ public class EnemyMovement : MonoBehaviour
         Vector3 headSegPos = _segments[0].position;
         Vector3 targetDir = (destinationPos - headSegPos).normalized;
 
-        _currVel += targetDir * _accel;
+        _currVel = targetDir * (_currVel.magnitude + _accel);
         _currVel = Vector3.ClampMagnitude(_currVel, _topSpeed);
 
         if (Vector3.Distance(headSegPos, destinationPos) <= _reachThreshold)
@@ -89,6 +88,7 @@ public class EnemyMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (_segments.Length <= 0) return;
+        FollowWayPoints();
         _headSeg.velocity = _currVel;
     }
 
@@ -103,7 +103,7 @@ public class EnemyMovement : MonoBehaviour
             Vector3 segPos = segment.position;
             Vector3 targetPos = prevSegPos + (segPos - prevSegPos).normalized * _separation;
 
-            segment.transform.position = Vector3.Slerp(segPos, targetPos, _smoothSpeed);
+            segment.transform.position = Vector3.Slerp(segPos, targetPos, _smoothSpeed * Time.deltaTime);
         }
     }
 }

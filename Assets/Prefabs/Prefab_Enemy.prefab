@@ -50,7 +50,7 @@ MonoBehaviour:
   _enemyMovement: {fileID: 409952035834076160}
   _color: {r: 0.9150943, g: 0.47912958, b: 0.47912958, a: 1}
   _trailColor: {r: 0.20784314, g: 0.20784314, b: 0.20784314, a: 0.44705883}
-  _deathDelay: 0.1
+  _deathDelay: 4
   _segDeathDelay: 0.1
   _initOnStart: 0
 --- !u!114 &409952035834076160
@@ -69,9 +69,9 @@ MonoBehaviour:
   _segments: []
   _headSeg: {fileID: 0}
   _separation: 0.01
-  _smoothSpeed: 0.1
+  _smoothSpeed: 10
   _topSpeed: 5
   _accel: 0.5
   _decel: 0.5
-  _reachThreshold: 0.2
+  _reachThreshold: 0.5
   _loopWaypoints: 0

@@ -10,6 +10,7 @@ public class Rune : MonoBehaviour
     [SerializeField] private float _fireInterval = 1;
     [SerializeField] private float _projectileSpeed = 5.0f;
     [SerializeField] private int _maxProjectiles = 20;
+    [SerializeField] private SpriteRenderer _spriteRenderer = null;
 
     private float _timer = 0;
     private float _projectilesFired = 0;
@@ -52,11 +53,20 @@ public class Rune : MonoBehaviour
                     _timer = _fireInterval;
 
                     _projectilesFired++;
+                    Color color = _spriteRenderer.color;
+                    color.a = 1 - ((float)_projectilesFired / _maxProjectiles);
+                    _spriteRenderer.color = color;
+
                     if (_projectilesFired >= _maxProjectiles)
                     {
                         gameObject.SetActive(false);
+                        Destroy(this.gameObject, 0.5f);
                     }
-                    return;
+                }
+                else
+                {
+                    _projectilesFired++;
+                    _timer = _fireInterval;
                 }
             }
         }

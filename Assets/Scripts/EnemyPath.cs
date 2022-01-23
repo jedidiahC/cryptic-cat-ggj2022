@@ -10,4 +10,13 @@ public class EnemyPath : MonoBehaviour
     {
         Debug.Assert(WayPoints != null && WayPoints.Length > 0, "_wayPoints are not assigned!");
     }
+
+    private void OnDrawGizmos()
+    {
+        for (int i = 1; i < WayPoints.Length; i++)
+        {
+            Gizmos.color = Color.grey;
+            Gizmos.DrawLine(WayPoints[i - 1].position, WayPoints[i].position);
+        }
+    }
 }

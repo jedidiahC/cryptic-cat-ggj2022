@@ -102,7 +102,8 @@ MonoBehaviour:
   _firePoint: {fileID: 4049894002093652541}
   _fireInterval: 0.25
   _projectileSpeed: 15
-  _maxProjectiles: 20
+  _maxProjectiles: 10
+  _spriteRenderer: {fileID: 6642502960771674563}
 --- !u!135 &110083170
 SphereCollider:
   m_ObjectHideFlags: 0

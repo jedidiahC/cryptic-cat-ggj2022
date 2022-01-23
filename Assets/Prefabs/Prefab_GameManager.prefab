@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6336236939473179430}
   - component: {fileID: -3792555404884143801}
+  - component: {fileID: 8618566557011479893}
   m_Layer: 0
   m_Name: Prefab_GameManager
   m_TagString: Untagged
@@ -45,3 +46,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 409952035834076162, guid: 1115297774e0c0141b4f10afb4270ede, type: 3}
   _enemyPaths: []
+  _spawnPoints: []
+  _tutorialEnemies: []
+  _spawnInterval: 5
+--- !u!114 &8618566557011479893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5146225783658575974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d888083d19a9c849a169d10fd0a09fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

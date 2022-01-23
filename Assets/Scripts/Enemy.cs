@@ -19,9 +19,11 @@ public class Enemy : MonoBehaviour
     private EnemySegment[] _segments;
     private float _timer = 0;
     private float _health = 0;
+    private int _wordLength = 0;
 
     public RuneWords CounterType { get { return _counterType; } }
     public bool IsDead { get { return _isDead; } }
+    public int WordLength { get { return _wordLength; } }
 
     private void Awake()
     {
@@ -46,6 +48,7 @@ public class Enemy : MonoBehaviour
     {
         _word = word;
         _counterType = counterType;
+        _wordLength = _word.Length;
         _health = _word.Length;
 
         _enemyMovement.SetPath(enemyPath);
@@ -86,9 +89,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnDeath()
+    public void OnDeath()
     {
-        Debug.Log("On Countered");
+        // Debug.Log("On Countered");
         _isDead = true;
         // _enemyMovement.SetIsUpdating(false);
         _currSegDestroyed = 0;
@@ -96,13 +99,17 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        DeathSequence();
+        if (_isDead)
+        {
+            DeathSequence();
+        }
     }
 
     private void DeathSequence()
     {
         if (_currSegDestroyed < 0 || _currSegDestroyed >= _segments.Length)
         {
+            Destroy(this.gameObject, _deathDelay);
             return;
         }
 

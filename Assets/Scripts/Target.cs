@@ -5,8 +5,9 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     [SerializeField] private float _currSleepLvl = 100;
+    [SerializeField] private float _damagePerLetter = 2;
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
@@ -19,7 +20,7 @@ public class Target : MonoBehaviour
             }
 
             enemy.Damage(4, enemy.CounterType);
-            _currSleepLvl = Mathf.Clamp(_currSleepLvl - 20, 0, 100);
+            _currSleepLvl = Mathf.Clamp(_currSleepLvl - _damagePerLetter * enemy.WordLength, 0, 100);
         }
     }
 

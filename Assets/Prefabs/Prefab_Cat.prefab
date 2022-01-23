@@ -154,15 +154,27 @@ MonoBehaviour:
   _characterMovement: {fileID: 4897495548150087588}
   _castKey: 19
   _runeStructures:
-  - color: {r: 0.6037736, g: 0.15663938, b: 0.15663938, a: 0}
+  - runeWords: 1
+    color: {r: 0.6037736, g: 0.15663938, b: 0.15663938, a: 0}
     keyCombinations: 230000001d0000001e0000001c000000
-    runeWords: 1
-  - color: {r: 0.6037736, g: 0.15663938, b: 0.15663938, a: 0}
+  - runeWords: 1
+    color: {r: 0.6037736, g: 0.15663938, b: 0.15663938, a: 0}
     keyCombinations: 27000000230000001900000010000000
-    runeWords: 1
-  - color: {r: 0.6037736, g: 0.15663938, b: 0.15663938, a: 0}
+  - runeWords: 1
+    color: {r: 0.6037736, g: 0.15663938, b: 0.15663938, a: 0}
     keyCombinations: 16000000170000001d0000001b000000
-    runeWords: 1
+  - runeWords: 1
+    color: {r: 0.6037736, g: 0.15663938, b: 0.15663938, a: 0}
+    keyCombinations: 16000000170000001d0000001c000000
+  - runeWords: 1
+    color: {r: 0.6037736, g: 0.15663938, b: 0.15663938, a: 0}
+    keyCombinations: 22000000170000001a00000010000000
+  - runeWords: 1
+    color: {r: 0.6037736, g: 0.15663938, b: 0.15663938, a: 0}
+    keyCombinations: 15000000170000001e0000001c000000
+  - runeWords: 1
+    color: {r: 0.6037736, g: 0.15663938, b: 0.15663938, a: 0}
+    keyCombinations: 27000000170000001a0000001c000000
 --- !u!114 &4897495547074565729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,8 +593,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1444229535
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 848a23583226b504197c91cc6e7546b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
